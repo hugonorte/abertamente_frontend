@@ -43,7 +43,7 @@ jobs:
           NUXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NUXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
 
       - name: Deploy with Retry
-        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch')
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch')
         uses: nick-fields/retry@v3
         with:
           max_attempts: 3
