@@ -10,7 +10,8 @@ on:
       - master
       - dev
   workflow_dispatch:
-
+  repository_dispatch:
+    types: [ post_status_changed ]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -52,3 +53,27 @@ jobs:
             eval $(ssh-agent -s)
             echo "${{ secrets.HUGONORTE_PRIVATE_SSH_KEY }}" | tr -d '\r' | ssh-add -
             rsync -avzr --delete -e "ssh -p 65002 -o StrictHostKeyChecking=no" .output/public/ ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_IP }}:/home/${{ secrets.HOSTINGER_USER }}/domains/${{ secrets.HOSTINGER_DOMAIN }}/public_html/
+
+      - name: Notificar Backend (Sucesso)
+        if: success() && github.event_name == 'repository_dispatch'
+        run: |
+          curl -X POST "https://painel.abertamente.net/api/webhooks/github/deploy-status" \
+          -H "Content-Type: application/json" \
+          -H "X-Webhook-Secret: ${{ secrets.BACKEND_WEBHOOK_SECRET }}" \
+          -d '{
+            "post_id": ${{ github.event.client_payload.post_id }},
+            "build_status": "success",
+            "desired_status": "${{ github.event.client_payload.desired_status }}"
+          }'
+
+      - name: Notificar Backend (Falha)
+        if: failure() && github.event_name == 'repository_dispatch'
+        run: |
+          curl -X POST "https://painel.abertamente.net/api/webhooks/github/deploy-status" \
+          -H "Content-Type: application/json" \
+          -H "X-Webhook-Secret: ${{ secrets.BACKEND_WEBHOOK_SECRET }}" \
+          -d '{
+            "post_id": ${{ github.event.client_payload.post_id }},
+            "build_status": "error",
+            "desired_status": "${{ github.event.client_payload.desired_status }}"
+          }'
