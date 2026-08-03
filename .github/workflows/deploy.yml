@@ -57,7 +57,7 @@ jobs:
       - name: Notificar Backend (Sucesso)
         if: success() && github.event_name == 'repository_dispatch'
         run: |
-          curl -X POST "https://painel.abertamente.net/api/webhooks/github/deploy-status" \
+          curl -X POST "https://admin.abertamente.net/api/webhooks/github/deploy-status" \
           -H "Content-Type: application/json" \
           -H "X-Webhook-Secret: ${{ secrets.BACKEND_WEBHOOK_SECRET }}" \
           -d '{
@@ -69,7 +69,7 @@ jobs:
       - name: Notificar Backend (Falha)
         if: failure() && github.event_name == 'repository_dispatch'
         run: |
-          curl -X POST "https://painel.abertamente.net/api/webhooks/github/deploy-status" \
+          curl -X POST "https://admin.abertamente.net/api/webhooks/github/deploy-status" \
           -H "Content-Type: application/json" \
           -H "X-Webhook-Secret: ${{ secrets.BACKEND_WEBHOOK_SECRET }}" \
           -d '{
