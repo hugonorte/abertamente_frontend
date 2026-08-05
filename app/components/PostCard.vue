@@ -14,8 +14,10 @@ const props = defineProps<{
     <NuxtLink :to="`/posts/${post.slug || post.id}`" class="post">
         <img :src="imgUrl + '/' + post.image_path" :alt="post.title">
         <div class="postContent">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.tldr }}</p>
+            <div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.tldr }}</p>
+            </div>
             <span class="read-more-btn">
                 Leia mais
             </span>
@@ -25,6 +27,7 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .post {
+    height:420px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -50,7 +53,10 @@ const props = defineProps<{
 
     .postContent {
         padding: 1rem;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow:1;
         h3 {
             margin: 0;
             font-size: 1rem;
