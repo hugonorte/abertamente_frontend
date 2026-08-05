@@ -16,6 +16,7 @@ interface Post {
   id: number
   title: string
   tldr: string
+  slug: string
 }
 
 interface SearchResponse {
@@ -75,7 +76,7 @@ const totalPages = computed(() => {
     <div v-else class="space-y-6">
       <article v-for="post in data?.data" :key="post.id" class="search-result-card">
         <h2 class="search-result-title">
-          <NuxtLink :to="`/posts/${post.id}`" class="search-result-link">
+          <NuxtLink :to="`/posts/${post.slug}`" class="search-result-link">
             {{ post.title }}
           </NuxtLink>
         </h2>
