@@ -138,7 +138,7 @@ if (FetchedPost.value) {
                 </section>
 
                 <section v-if="BibliographicReferences.length > 0" class="bibliographic_references">
-                    <h2>Referências Bibliográficas</h2>
+                    <h2>Referências</h2>
                     <ol>
                         <li v-for="(reference, index) in BibliographicReferences" :key="index">
                             {{ reference.description }}
