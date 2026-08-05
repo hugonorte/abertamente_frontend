@@ -99,30 +99,31 @@ if (FetchedPost.value) {
     <main>
         <article v-if="FetchedPost" class="blog-post">
             <header>
-                <h1>{{ FetchedPost.title }}</h1>
                 <figure class="featured-image">
                     <img :src="`${imgUrl}/${FetchedPost.image_path}`" :alt="FetchedPost.title">
                     <figcaption>Imagem ilustrativa</figcaption>
                 </figure>
-                
-                <section class="author-info">
-                    <address>
-                        <h3>{{ FetchedPost.author_main_title }} {{ FetchedPost.author_name }}</h3>
-                        <p class="author-bio">{{ FetchedPost.author_bio }}</p>
-                        <p class="social-links">
-                            <strong>{{ FetchedPost.author_preferred_social_network }}:</strong> 
-                            <a :href="socialLink" target="_blank" rel="noopener noreferrer">
-                                @{{ FetchedPost.author_preferred_social_network_username }}
-                            </a>
-                        </p>
-                    </address>
-                    <p class="publish-date">
-                        Publicado em <time :datetime="FetchedPost.created_at ? String(FetchedPost.created_at) : ''">{{ formatDate(FetchedPost.created_at) }}</time>
-                    </p>
-                </section>
+                <h1>{{ FetchedPost.title }}</h1>
+
+                <p class="publish-date">
+                    Publicado em <time :datetime="FetchedPost.created_at ? String(FetchedPost.created_at) : ''">{{ formatDate(FetchedPost.created_at) }}</time>
+                </p>
             </header>
 
             <section class="main_text" v-html="FetchedPost.content"></section>
+
+            <section class="author-info">
+                <address>
+                    <h3>{{ FetchedPost.author_main_title }} {{ FetchedPost.author_name }}</h3>
+                    <p class="author-bio">{{ FetchedPost.author_bio }}</p>
+                    <p class="social-links">
+                        <strong>{{ FetchedPost.author_preferred_social_network }}:</strong> 
+                        <a :href="socialLink" target="_blank" rel="noopener noreferrer">
+                            @{{ FetchedPost.author_preferred_social_network_username }}
+                        </a>
+                    </p>
+                </address>
+            </section>
 
             <footer class="post-footer">
                 <section v-if="Footnotes.length > 0" class="footnotes_section">

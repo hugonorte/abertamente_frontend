@@ -17,32 +17,29 @@ main {
 
     article {
         header {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: $primary;
 
-             max-width: 800px;
-                margin: 0 auto;
-                line-height: 1.6;
-                font-size: 1.1rem;
-                color: $primary;
+            figure {
+                margin: 1rem 0;
+                text-align: left;
+                font-size:0.3rem;
 
-                figure {
-                    margin: 1rem 0;
-                    text-align: left;
-                    font-size:0.3rem;
-
-                    img {
-                        max-width: 100%;
-                        height: auto;
-                        border-radius: 8px;
-                    }
-
-                    figcaption {
-                        font-size: 0.7rem;
-                        color: $secondary;
-                        margin-top: 0.5rem;
-                    }
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
                 }
 
-
+                figcaption {
+                    font-size: 0.7rem;
+                    color: $secondary;
+                    margin-top: 0.5rem;
+                }
+            }
             h1 {
                 color: $primary;
             }
@@ -75,6 +72,8 @@ main {
                 font-size:0.77rem;
 
             }
+
+            
         }
 
         section {
@@ -157,6 +156,16 @@ main {
                         color: $primary;
                     }
                 }
+            }
+        }
+
+        .author-info {
+            margin: 3rem 0;
+            h3{
+                line-height: 0.888rem;
+            }
+            p {
+                line-height: 0.888rem;
             }
         }
     }
