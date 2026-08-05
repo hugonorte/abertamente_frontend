@@ -11,16 +11,16 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div class="post">
+    <NuxtLink :to="`/posts/${post.slug || post.id}`" class="post">
         <img :src="imgUrl + '/' + post.image_path" :alt="post.title">
         <div class="postContent">
             <h3>{{ post.title }}</h3>
             <p>{{ post.tldr }}</p>
-            <NuxtLink :to="`/posts/${post.slug || post.id}`" class="read-more-btn">
+            <span class="read-more-btn">
                 Leia mais
-            </NuxtLink>
+            </span>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <style scoped lang="scss">
@@ -34,6 +34,8 @@ const props = defineProps<{
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* Prevents underline on the whole card */
+    color: inherit; /* Keeps original text color */
     
     &:hover {
         transform: scale(1.02);
