@@ -21,10 +21,14 @@
   },
   "devDependencies": {
     "@nuxt/scripts": "^0.13.2",
+    "@nuxt/test-utils": "^4.1.0",
     "@nuxtjs/seo": "^3.4.0",
+    "@vue/test-utils": "^2.4.11",
     "cypress": "^15.16.0",
+    "happy-dom": "^20.11.1",
     "sass": "^1.66.1",
     "sass-loader": "^13.3.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^4.1.10"
   }
 }
