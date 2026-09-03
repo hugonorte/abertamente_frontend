@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     head: {
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+      ],
+      meta: [
+        { name: 'robots', content: 'max-image-preview:large' }
       ]
     }
   },

@@ -81,14 +81,26 @@ if (FetchedPost.value) {
 
     useSchemaOrg([
         defineArticle({
+            '@type': 'NewsArticle',
             headline: FetchedPost.value.title,
             image: `${config.public.publicImagesFolder}/${FetchedPost.value.image_path}`,
+            datePublished: FetchedPost.value.published_at ? String(FetchedPost.value.published_at) : (FetchedPost.value.created_at ? String(FetchedPost.value.created_at) : undefined),
+            dateModified: FetchedPost.value.updated_at ? String(FetchedPost.value.updated_at) : undefined,
             author: [
                 {
+                    '@type': 'Person',
                     name: FetchedPost.value.author_name,
+                    url: socialLink.value !== '#' ? socialLink.value : undefined,
                 }
             ],
-            datePublished: FetchedPost.value.created_at ? String(FetchedPost.value.created_at) : undefined,
+            publisher: {
+                '@type': 'Organization',
+                name: config.public.siteName || 'Abertamente',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://abertamente.net/favicon.svg'
+                }
+            },
             description: FetchedPost.value.tldr,
         })
     ])
