@@ -51,7 +51,7 @@ export default defineNuxtConfig({
         nitroConfig.prerender = nitroConfig.prerender || {}
         nitroConfig.prerender.routes = nitroConfig.prerender.routes || []
         
-        nitroConfig.prerender.routes.push(...routes)
+        nitroConfig.prerender.routes.push(...routes, '/news-sitemap.xml')
       } catch (error) {
         console.error('Failed to fetch posts for prerendering:', error)
       }
